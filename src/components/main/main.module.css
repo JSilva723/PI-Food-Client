@@ -1,0 +1,7 @@
+.loadAndError{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgray;
+  min-height: 80vh;
+} 

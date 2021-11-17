@@ -1,0 +1,24 @@
+.container{
+  padding-left: 0px;
+  display: flex;
+  background-color: lightgray;
+  margin: 0;
+  padding: 10px 5px;
+}
+
+nav ul li{
+  width: 25px;
+  height: 25px;
+  list-style: none;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  line-height: 25px;
+  cursor: pointer;
+}
+
+.active{
+  background-color: black;
+  color: white;
+}

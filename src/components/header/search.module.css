@@ -1,0 +1,23 @@
+.button{
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  transform: translate(-10px,-1px);
+  border: none;
+  padding: 3px 15px;
+}
+
+.input{
+  border: none;
+  border-bottom: 1px solid white;
+  background: none;
+  color: white;
+}
+
+.input::placeholder {
+  color: white;
+}
+
+input:focus{
+  outline: none;
+}

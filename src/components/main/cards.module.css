@@ -1,0 +1,8 @@
+.container{
+  background-color:lightgray;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  min-height: 79.5vh;
+}

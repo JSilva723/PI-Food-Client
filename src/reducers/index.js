@@ -14,7 +14,7 @@ const actionsObj = {
     ...state,
     error: payload
   }),
-  [CLEAR_ERROR]: (state, payload) => ({
+  [CLEAR_ERROR]: (state) => ({
     ...state,
     error: ''
   }),
@@ -30,7 +30,7 @@ const actionsObj = {
     ...state,
     item: {...payload}
   }),
-  [CLEAR_ITEM]: (state, payload) => ({
+  [CLEAR_ITEM]: (state) => ({
     ...state,
     item: undefined
   }),

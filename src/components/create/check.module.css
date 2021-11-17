@@ -1,0 +1,37 @@
+.grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 80%;
+  place-items: center;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.check{
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+}
+
+.label, .active{
+  cursor: pointer;
+}
+
+.active{
+  color: green;
+  text-transform: capitalize;
+}
+
+.title{
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  width: 80%;
+  text-align: center;
+  padding: 10px 0px 10px 0px;
+  margin: 0;
+  text-decoration: underline;
+}
