@@ -10,6 +10,12 @@
   margin-bottom: 20px;
 }
 
+@media (min-width: 800px) {
+  .grid{
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
 .check{
   visibility: hidden;
   position: absolute;
@@ -18,11 +24,11 @@
 
 .label, .active{
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .active{
   color: green;
-  text-transform: capitalize;
 }
 
 .title{

@@ -21,14 +21,17 @@
   color: black;
 }
 
+
 .textarea{
   resize: none;
   height: 150px;
   border-bottom: none;
+  outline: none;
 }
 
 .list{
   width: 100%;
+  display: flex;
 }
 
 .preview{
@@ -48,12 +51,29 @@
 }
 
 .marked{
-  cursor: pointer;
   border: 1px solid black;
   border-bottom: 3px solid lightgray;
   z-index: 10;
   padding: 0px 10px 0px 10px;
-  
+}
+
+
+
+.add{
+  transform: translateY(-3px);
+}
+
+.addStep{
+  align-self: flex-start;
+}
+
+.add, .addStep, .marked, .marker{
+  cursor: pointer;
+}
+
+.txt{
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 

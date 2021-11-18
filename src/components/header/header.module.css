@@ -22,12 +22,11 @@
 }
 
 .link{
-  background-color:white;
+  background-color:lightgray;
   color: black;
   padding: 3px 15px;
   text-decoration: none;
   margin: 10px 0px;
-  border-radius: 10px;
 }
 
 .theme{

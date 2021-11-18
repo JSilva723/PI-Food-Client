@@ -10,3 +10,9 @@
   background-repeat: no-repeat;
   background-position-y: 50%;
 }
+
+.link{
+  text-decoration: none;
+  color: black;
+  font-size: 3rem;
+}

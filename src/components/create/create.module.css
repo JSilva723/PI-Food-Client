@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 15px;
+  padding-bottom: 60px;
 }
 
 .input, .textarea{
@@ -16,6 +17,49 @@
   padding-left: 5px;
 }
 
+.rangeContainer{
+  width: 80%;
+  
+}
+
+.range{
+  width: 86.1%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: black;
+  height: 1px;
+  outline: none; 
+  vertical-align: middle;
+}
+
+@media (min-width: 800px) {
+  .range{
+   width: 95%;
+  }
+}
+
+
+/* For Chrome, Opera, Safari, Edge */
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 10px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  background: black; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%;
+}
+/* For Mozilla */
+.range::-moz-range-thumb {
+  width: 10px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  background: black; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+
 .input::placeholder, .textarea::placeholder{
   color: black;
 }
@@ -24,8 +68,31 @@
   resize: none;
   height: 150px;
   border-bottom: none;
+  outline: none;
 }
 
 .error{
   color: red;
+}
+
+.title{
+  background-color: lightgray;
+  margin: 0;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+.txt{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.img{
+  width: 100px;
+  height: 100px;
+}
+
+.submit{
+  width: 80%;
+  margin-bottom: 30px;
 }
