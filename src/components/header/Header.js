@@ -11,7 +11,6 @@ export const Header = () => {
 
   return (
     <header className={s.container}>
-      <div className={s.theme}>theme</div>
       {location.pathname.includes('main')
         ? <div className={s.responsive}>
               <Search />
