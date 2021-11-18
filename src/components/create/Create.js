@@ -23,8 +23,6 @@ export const Create = () => {
       .then(response => {
         if (response.status === 200) {
           setResponse(response.data);
-        } else {
-          setResponse(response.data);
         }
       })
       .catch(err => console.log(err)) // eslint-disable-line
@@ -66,7 +64,8 @@ export const Create = () => {
   return (
     <>
       <Header />
-      {response && <Created item={response} setResponse={setResponse} setInputs={setInputs} />}
+      {response ? <Created item={response} setResponse={setResponse} setInputs={setInputs} />
+      : <><h1 className={s.title}>Crear Receta</h1>
       <form onSubmit={handleSubmit} className={s.container}>
         <input name="title"
           value={inputs.title}
@@ -77,23 +76,25 @@ export const Create = () => {
           className={s.input}
         />
         {error.title ? <span className={s.error}>{error.title}</span> : <br/>}
-        <input name="score"
+        <div className={s.rangeContainer}>
+        0 <input name="score"
           value={inputs.score}
           onChange={handleChange}
-          placeholder="Puntuacion"
           required
-          type="text"
-          className={s.input}
-        />
-        {error.score ? <span className={s.error}>{error.score}</span>: <br/>}
-        <input name="healthScore"
+          type="range" min="0" max="100"
+          className={s.range}
+          /> 100
+        </div>
+        {error.score ? <span className={s.error}>{error.score}</span>:<span>Puntuacion: {inputs.score}</span>}
+        <div className={s.rangeContainer}>
+        0 <input name="healthScore"
           value={inputs.healthScore}
           onChange={handleChange}
-          placeholder="Nivel de comida saludable"
-          type="text"
-          className={s.input}
-        />
-        {error.healthScore ? <span className={s.error}>{error.healthScore}</span>:<br/>}
+          type="range" min="0" max="100"
+          className={s.range}
+        /> 100
+        </div>
+        {error.healthScore ? <span className={s.error}>{error.healthScore}</span>:<span>Nivel de saludable: {inputs.healthScore}</span>}
         <textarea name="summary"
           value={inputs.summary}
           onChange={handleChange}
@@ -102,25 +103,26 @@ export const Create = () => {
           type="text"
           className={s.textarea}
         />
-        {error.summary ? <span className={s.error}>{error.summary}</span>: null}
+        {error.summary ? <span className={s.error}>{error.summary}</span>: <br/>}
         <Check handleSelect={handleSelect} inputsTypes={inputs.types} />
         <Steps setInputs={setInputs} inputsSteps={inputs.steps} list={list} setList={setList}/>
+        <p className={s.txt}>Por defecto se le asignaremos la imangen, si desea cambiarla ingrese una URL.</p>
+        <img src={inputs.img || 'https://spoonacular.com/recipeImages/716426-312x231.jpg'} alt="Recipe" className={s.img}/>
+        <input name="img"
+          value={inputs.img}
+          onChange={handleChange}
+          placeholder="URL de la imagen"
+          type="text"
+          className={s.input}
+        />
         {/* The submit button will be shown when the form is completed correctly */}
         {
           // Verify that there are no errors and that there is at least one type
           Object.keys(error).length === 0 && inputs.types.length !== 0
-            ? <button>Crear</button>
+            ? <button className={s.submit}>Crear</button>
             : null
         }
-        <input name="img"
-          value={inputs.img}
-          onChange={handleChange}
-          placeholder="Ingrese la URL de la imagen"
-          type="text"
-          className={s.input}
-        />
-        <img src={inputs.img || 'https://spoonacular.com/recipeImages/716426-312x231.jpg'} alt="Recipe"/>
-      </form>
+      </form></>}
     </>
   );
 };

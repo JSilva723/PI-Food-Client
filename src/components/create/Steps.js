@@ -1,31 +1,33 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import s from './steps.module.css';
 
 
 export const Steps = ({ setInputs, inputsSteps, list, setList }) => {
 
-  const step = useRef();
   const [number, setNumber] = useState(1);
-  const [idx, setIdx] = useState(0);
-  const [show, setShow] = useState(false);
+  const [step, setStep] = useState('');
   const [ingredient, setIngredient] = useState('');
   const [equipment, setEquipment] = useState('');
+  const [idx, setIdx] = useState(0);
+  const [show, setShow] = useState(false);
 
   const addStep = (e) => {
     e.preventDefault();
-    const data = {
-      number,
-      step: step.current.value,
-      ingredients: list.ingredients,
-      equipments: list.equipments
-    };
-    setInputs(prev => ({
-      ...prev,
-      steps: [...prev.steps, data]
-    }));
-    step.current.value = '';
-    setNumber(number + 1);
-    setList({ingredients:[], equipments:[]});
+    if (step !== '' && list.ingredients.length !== 0 && list.equipments.length !== 0){
+      const data = {
+        number,
+        step: step,
+        ingredients: list.ingredients,
+        equipments: list.equipments
+      };
+      setInputs(prev => ({
+        ...prev,
+        steps: [...prev.steps, data]
+      }));
+      setStep('');
+      setNumber(number + 1);
+      setList({ingredients:[], equipments:[]});
+    }
   };
 
   const selectStep = (e) => {
@@ -36,28 +38,32 @@ export const Steps = ({ setInputs, inputsSteps, list, setList }) => {
 
   const addIngredient = (e) =>{
     e.preventDefault();
-    setList(prev => ({
-      ...prev,
-      ingredients: [...prev.ingredients, {name: ingredient}]
-    }));
+    if (ingredient !== '' && !list.ingredients.find(i => i.name === ingredient)) {
+      setList(prev => ({
+        ...prev,
+        ingredients: [...prev.ingredients, {name: ingredient}]
+      }));
+    }
     setIngredient('');
   };
 
-  const addEquipment = (e) =>{
+  const addEquipment = (e) => {
     e.preventDefault();
-    setList(prev => ({
-      ...prev,
-      equipments: [...prev.equipments, {name: equipment}]
-    }));
+    if (equipment !== '' && !list.equipments.find(e => e.name === equipment)) {
+      setList(prev => ({
+        ...prev,
+        equipments: [...prev.equipments, {name: equipment}]
+      }));
+    }
     setEquipment('');
   };
 
-
   return (
     <>
+    <p className={s.txt}>Los pasos no son requeridos. Para agregarlos correctamente, el campo paso a seguir no debe estar vacio y la lista de ingredientes y la de materiales debe contener al menos un elemento</p>
       <span className={s.nav}>
         <span onClick={() => setShow(false)} className={show === false ? s.marked : s.marker}>Crear</span>
-        {inputsSteps.lenght !== 0
+        {inputsSteps.length !== 0
             ? inputsSteps.map(step => {
                 return (
                   <span key={step.number} 
@@ -72,38 +78,41 @@ export const Steps = ({ setInputs, inputsSteps, list, setList }) => {
       <div className={s.container}>
         {show === false
           ? <>
-              <textarea ref={step} placeholder="Ingrese el paso a seguir" type="text" className={s.textarea} />
+              <textarea placeholder=" Paso a seguir" 
+                type="text" 
+                className={s.textarea} 
+                value={step}
+                onChange={(e) => setStep(e.target.value)}
+              />
               <div className={s.list}>
-                <input name="ingredient"
-                  placeholder="Ingrediente"
+                <input placeholder="Ingrediente"
                   type="text"
                   className={s.input}
                   value={ingredient}
                   onChange={(e) => setIngredient(e.target.value)}
                 />
                 <button onClick={addIngredient} className={s.add}>+</button>
-                <span>Ingredientes: {JSON.stringify(list.ingredients)}</span>
               </div>
+                <span>Ingredientes: {list.ingredients.map(i => i.name).join(', ')}</span>
               <div className={s.list}>
-                <input name="equipment"
-                  placeholder="Elemento"
+                <input placeholder="Elemento"
                   type="text"
                   className={s.input}
                   value={equipment}
                   onChange={(e) => setEquipment(e.target.value)}
                 />
                 <button onClick={addEquipment} className={s.add}>+</button>
-                <span>Ingredientes: {JSON.stringify(list.equipments)}</span>
               </div>
-              <button onClick={addStep} className={s.add}>Agregar paso</button>
+              <span>Elementos: {list.equipments.map(e => e.name).join(', ')}</span>
+              <button onClick={addStep} className={s.addStep}>Agregar paso</button>
             </>
           : null
         }
         {show === true
           ? <div className={s.preview}>
             <p>Paso n° {inputsSteps[idx - 1].number}:<br/>{inputsSteps[idx - 1].step}</p>
-            <p>Ingredientes necesarios son: {inputsSteps[idx - 1].ingredients.join(', ')}</p>
-            <p>Materiales necesarios son: {inputsSteps[idx - 1].equipments.join(', ')}</p>
+            <p>Ingredientes necesarios: {inputsSteps[idx - 1].ingredients.map(i => i.name).join(', ')}</p>
+            <p>Elementos necesarios: {inputsSteps[idx - 1].equipments.map(e => e.name).join(', ')}</p>
             </div>
           : null
         }

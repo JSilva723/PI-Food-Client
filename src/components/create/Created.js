@@ -15,13 +15,11 @@ export const Created = ({ item, setResponse, setInputs }) => {
   
   return (
     <div className={s.container}>
-    <div className={s.card}>
+      <button onClick={handleClick} className={s.button}>Aceptar</button>
       {item.errors
         ? <p>{item.errors[0].message}</p>
         : <CardDetail item={item} />
       }
-      <button onClick={handleClick} className={s.button}>Aceptar</button>
     </div>
-      </div>
   );
 };

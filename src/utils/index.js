@@ -2,8 +2,8 @@
 export const DEFAULT_VALUES = {
   title: '',
   summary: '',
-  score: '',
-  healthScore: '',
+  score: 0,
+  healthScore: 0,
   steps: [],
   img: '',
   types: []
