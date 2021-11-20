@@ -4,6 +4,7 @@ import { Create } from './create/Create';
 import { Detail } from './detail/Detail';
 import { Home } from './home/Home';
 import './normalize.css';
+import './style.css';
 
 
 export const App = () => {
