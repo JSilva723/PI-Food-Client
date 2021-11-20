@@ -1,17 +1,8 @@
 import s from './nav.module.css';
-
-const paginate = (number) => {
-  const array = [];
-  for (let i=0; i<number; i++){
-    array.push(i +1);
-  }
-  return array;
-};
-
+import { paginate } from '../../utils';
 
 export const Nav = ({index, setIndex, recipes}) => {
   
-  console.log(recipes);
   const total = Math.ceil(recipes.length/9);
   const pages = paginate(total);
 
