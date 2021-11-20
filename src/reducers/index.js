@@ -1,4 +1,7 @@
-import { REQUEST_FAILED, GET_TYPES, GET_ITEMS, ORDER_BY, FILTER_BY, GET_ITEM_BY_ID, CLEAR_ITEM, CLEAR_ERROR } from '../actions/types';
+import { 
+  REQUEST_FAILED, GET_TYPES, GET_ITEMS, ORDER_BY, FILTER_BY, 
+  GET_ITEM_BY_ID, CLEAR_ITEM, CLEAR_ERROR, SET_ITEM 
+} from '../actions/types';
 
 const initialState = {
   types: [],
@@ -29,6 +32,10 @@ const actionsObj = {
   [GET_ITEM_BY_ID]: (state, payload) => ({
     ...state,
     item: {...payload}
+  }),
+  [SET_ITEM]: (state, payload) => ({
+    ...state,
+    item: payload
   }),
   [CLEAR_ITEM]: (state) => ({
     ...state,
