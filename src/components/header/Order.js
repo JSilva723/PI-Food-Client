@@ -19,11 +19,11 @@ export const Order = () => {
   
   return (
     <select onChange={handleChange} className={s.select}>
-      <option value="default">Ordenar por</option>
-      <option value="upward_score" >Ascendente Puntuación</option>
-      <option value="falling_score">Descendente Puntuación</option>
-      <option value="upward_title">Ascendente Alfabético</option>
-      <option value="falling_title">Descendente Alfabético</option>
+      <option value="default">Order By</option>
+      <option value="upward_score" >Ascending Score</option>
+      <option value="falling_score">Descending Score</option>
+      <option value="upward_title">Ascending Alphabetical</option>
+      <option value="falling_title">Descending Alphabetical</option>
     </select>
   );
 };

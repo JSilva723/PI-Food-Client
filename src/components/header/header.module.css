@@ -27,10 +27,6 @@
   padding: 3px 15px;
   text-decoration: none;
   margin: 10px 0px;
+  border-radius: 10px;
 }
 
-.theme{
-  position: absolute;
-  top: 0;
-  left: 0;
-}

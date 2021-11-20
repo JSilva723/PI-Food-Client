@@ -14,12 +14,12 @@ export const Header = () => {
       {location.pathname.includes('main')
         ? <div className={s.responsive}>
               <Search />
-              <Link to="/create" className={s.link}>Crear Receta</Link>
+              <Link to="/create" className={s.link}>Create Recipe</Link>
             <div>
               <Order />
             </div>
           </div>
-        : <Link to="/main" className={s.link}>Principal</Link>
+        : <Link to="/main" className={s.link}>Main</Link>
       }
     </header>
   );
