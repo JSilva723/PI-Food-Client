@@ -1,7 +1,7 @@
 import { Service } from '../utils/service';
 import { 
   REQUEST_FAILED, GET_TYPES, GET_ITEMS, ORDER_BY,
-  FILTER_BY, GET_ITEM_BY_ID, CLEAR_ITEM, CLEAR_ERROR 
+  FILTER_BY, GET_ITEM_BY_ID, CLEAR_ITEM, CLEAR_ERROR, SET_ITEM 
 } from './types';
 const api = new Service();
 
@@ -21,7 +21,10 @@ export const getTypes = () => ((dispatch) =>{
         });
       }
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch({
+      type: REQUEST_FAILED,
+      payload: err.message
+    }));
 });
 
 export const getItems = (title) => ((dispatch) =>{
@@ -39,7 +42,10 @@ export const getItems = (title) => ((dispatch) =>{
         });
       }
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch({
+      type: REQUEST_FAILED,
+      payload: err.message
+    }));
 });
 
 export const orderBy = (attr) => {
@@ -61,6 +67,13 @@ export const clearItem = () => {
     type: CLEAR_ITEM,
   };
 }; 
+
+export const setItem = (item) => {
+  return {
+    type: SET_ITEM,
+    payload: item
+  };
+};
 
 export const clearError = () => {
   return {
@@ -91,3 +104,5 @@ export const getItemById = (id) => ((dispatch) =>{
       });
     });
 });
+
+
