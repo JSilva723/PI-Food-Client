@@ -1,3 +1,5 @@
+const { REACT_APP_TYPES, REACT_APP_RECIPES } = process.env;
+
 export function Service(){ }
 
 Service.prototype._post = function(url, data){
@@ -40,7 +42,7 @@ Service.prototype._get = function(url){
 Service.prototype.insert = function(data){
   // This function creates an item. Receives the data as parameter.
   return new Promise ((resolve, reject) => {
-    this._post('http://localhost:3001/recipes', data)
+    this._post(REACT_APP_RECIPES, data)
       .then(res => resolve(res))
       .catch(err => reject(err));
   });
@@ -49,7 +51,7 @@ Service.prototype.insert = function(data){
 Service.prototype.getTypes = function(){
   // This function gets the types
   return new Promise((resolve, reject) => {
-    this._get('http://localhost:3001/types')
+    this._get(REACT_APP_TYPES)
       .then(res => resolve(res))
       .catch(err => reject(err));
   });
@@ -58,7 +60,7 @@ Service.prototype.getTypes = function(){
 Service.prototype.getItems = function(title){
   // This function gets the items
   return new Promise((resolve, reject) => {
-    this._get(`http://localhost:3001/recipes/?title=${title}`)
+    this._get(`${REACT_APP_RECIPES}/?title=${title}`)
       .then(res => resolve(res))
       .catch(err => reject(err));
   });
@@ -67,7 +69,7 @@ Service.prototype.getItems = function(title){
 Service.prototype.getItemById = function(id){
   // // This function get the item by id
   return new Promise((resolve, reject) => {
-    this._get(`http://localhost:3001/recipes/${id}`)
+    this._get(`${REACT_APP_RECIPES}/${id}`)
       .then(res => resolve(res))
       .catch(err => reject(err));
   });
