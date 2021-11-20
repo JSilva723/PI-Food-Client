@@ -1,8 +1,10 @@
 import { Loading } from '../loading/Loading';
 import s from './cardDetail.module.css';
+import { createMarkup } from '../../utils';
 
 
 export const CardDetail = ({ item }) => {
+
   return (
     <>
       {!item
@@ -16,9 +18,11 @@ export const CardDetail = ({ item }) => {
             </div>
             <div className={s.dos}>
               <img src={item.img} alt={item.title} className={s.img}/>
-              <p>Summary:<br />{item.summary}</p>
+              <p>Summary:<br/><span dangerouslySetInnerHTML={createMarkup(item.summary)}></span></p>
+              <br />
             </div>
             <div className={s.tres}>
+            {item.steps.length !== 0 ? <h2 style={{textAlign: 'center'}}>Making</h2> : null }  
             {
               item.steps.map(step => {
                 return (
@@ -26,7 +30,7 @@ export const CardDetail = ({ item }) => {
                     <h3>Step N° {step.number}</h3>
                     <p>{step.step}</p>
                     <p>Ingredients required: {step.ingredients.map(i => i.name).join(', ')}</p>
-                    <p>Equipment required: {step.equipments.map(e => e.name).join(', ')}</p>
+                    <p>Equipment required: {step.equipment.map(e => e.name).join(', ')}</p>
                   </div>
                 );
               })

@@ -14,7 +14,7 @@ export const Steps = ({ setInputs, inputsSteps, list, setList }) => {
   const addStep = (e) => {
     e.preventDefault();
     // Verificate no empty data
-    if (step !== '' && list.ingredients.length !== 0 && list.equipments.length !== 0){
+    if (step !== '' && list.ingredients.length !== 0 && list.equipment.length !== 0){
       const data = {
         number,
         step: step,
@@ -28,7 +28,7 @@ export const Steps = ({ setInputs, inputsSteps, list, setList }) => {
       }));
       setStep('');
       setNumber(number + 1);
-      setList({ingredients:[], equipments:[]});
+      setList({ingredients:[], equipment:[]});
     }
   };
 
@@ -55,10 +55,10 @@ export const Steps = ({ setInputs, inputsSteps, list, setList }) => {
   const addEquipment = (e) => {
     e.preventDefault();
     // Verificate no empty and duplicate
-    if (equipment !== '' && !list.equipments.find(e => e.name === equipment)) {
+    if (equipment !== '' && !list.equipment.find(e => e.name === equipment)) {
       setList(prev => ({
         ...prev,
-        equipments: [...prev.equipments, {name: equipment}]
+        equipment: [...prev.equipment, {name: equipment}]
       }));
     }
     setEquipment('');
@@ -109,7 +109,7 @@ export const Steps = ({ setInputs, inputsSteps, list, setList }) => {
                 />
                 <button onClick={addEquipment} className={s.add}>Add</button>
               </div>
-              <span>Equipments: {list.equipments.map(e => e.name).join(', ')}</span>
+              <span>Equipments: {list.equipment.map(e => e.name).join(', ')}</span>
               <button onClick={addStep} className={s.addStep}>Add step</button>
             </>
           : null
@@ -118,7 +118,7 @@ export const Steps = ({ setInputs, inputsSteps, list, setList }) => {
           ? <div className={s.preview}>
             <p>Step n° {inputsSteps[idx - 1].number}:<br/>{inputsSteps[idx - 1].step}</p>
             <p>Ingredients required: {inputsSteps[idx - 1].ingredients.map(i => i.name).join(', ')}</p>
-            <p>Equipments required: {inputsSteps[idx - 1].equipments.map(e => e.name).join(', ')}</p>
+            <p>Equipments required: {inputsSteps[idx - 1].equipment.map(e => e.name).join(', ')}</p>
             </div>
           : null
         }

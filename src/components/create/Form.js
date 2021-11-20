@@ -18,7 +18,7 @@ export const Form = () => {
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState(DEFAULT_VALUES);
   const [error, setError] = useState({});
-  const [list, setList] = useState({ ingredients: [], equipments: [] });
+  const [list, setList] = useState({ ingredients: [], equipment: [] });
   
   // Watch inputs for errors
   useEffect(() => {

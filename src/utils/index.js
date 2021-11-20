@@ -54,3 +54,9 @@ export const paginate = (number) => {
   }
   return array;
 };
+
+export function createMarkup(text) {
+  // return an objet to dangerouslySetInnerHTML
+  return {
+     __html: text };
+}; 
