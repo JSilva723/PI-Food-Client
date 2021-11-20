@@ -1,27 +1,20 @@
 const re_name = /[0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]/;
-const re_number = /[A-Za-z_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]/;
 
 export function validate(input) {
   let errors = {};
   if (!input.title) {
-    errors.title = '*El titúlo es requerido';
+    errors.title = '*Title is required';
   } else if (re_name.test(input.title)) {
-    errors.title = '*Solo se admiten letras, puntos y comas';
+    errors.title = '*Only letters, semicolons and commas are supported';
   }
   if (!input.summary) {
-    errors.summary = '*El resumen es requerido';
-  } else if (re_name.test(input.summary)) {
-    errors.summary = '*Solo se admiten letras, puntos y comas';
+    errors.summary = '*The summary is required';
   }
   if (!input.score) {
-    errors.score = '*La puntuación es requerida';
-  } else if (re_number.test(input.score)) {
-    errors.score = '*Debe ser un numero';
+    errors.score = '*Score is required';
   }
   if (!input.healthScore) {
-    errors.healthScore = '*El nivel de comida saludable es requerido';
-  } else if (re_number.test(input.healthScore)) {
-    errors.healthScore = '*Debe ser un numero';
+    errors.healthScore = '*Healt score is required';
   }
   return errors;
 };

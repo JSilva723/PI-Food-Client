@@ -45,3 +45,12 @@ export const sortItems = function (array, order_by) {
   };
   return array;
 };
+
+export const paginate = (number) => {
+  // This function receives the total number of pages to be generated and returns an array with the elements from one to the total
+  const array = [];
+  for (let i=0; i<number; i++){
+    array.push(i + 1);
+  }
+  return array;
+};
