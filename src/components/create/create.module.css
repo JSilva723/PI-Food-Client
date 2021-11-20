@@ -43,22 +43,21 @@
 
 /* For Chrome, Opera, Safari, Edge */
 .range::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
+  -webkit-appearance: none;
   appearance: none;
-  width: 10px; /* Set a specific slider handle width */
-  height: 10px; /* Slider handle height */
-  background: black; /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  width: 10px; 
+  height: 10px;
+  background: black; 
+  cursor: pointer;
   border-radius: 50%;
 }
 /* For Mozilla */
 .range::-moz-range-thumb {
-  width: 10px; /* Set a specific slider handle width */
-  height: 10px; /* Slider handle height */
-  background: black; /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  width: 10px;
+  height: 10px; 
+  background: black; 
+  cursor: pointer;
 }
-
 
 .input::placeholder, .textarea::placeholder{
   color: black;
@@ -94,5 +93,10 @@
 
 .submit{
   width: 80%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  border-radius: 10px;
+  border: 1px solid black;
+  outline: none;
+
 }

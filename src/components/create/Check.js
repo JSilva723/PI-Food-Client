@@ -15,7 +15,7 @@ export const Check = ({ handleSelect, inputsTypes }) => {
 
   return (
     <>
-      <p className={s.title}>Seleccione al menos un tipo de dieta.</p>
+      <p className={s.title}>Select at least one type of diet.</p>
       <div className={s.grid}>
       {
         types && types.map(type => {
