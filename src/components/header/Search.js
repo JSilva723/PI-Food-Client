@@ -9,12 +9,13 @@ export const Search = () => {
   const discpatch = useDispatch();
   const [show, setShow] = useState(true);
 
+
   const handleSearch = () => {
     if (input !== '') {
-      discpatch(clearError());
       discpatch(getItems(input));
       setInput('');
       setShow(false);
+      discpatch(clearError());
     }
   };
 

@@ -12,13 +12,14 @@ export const CardDetail = ({ item }) => {
         : <div className={s.container}>
             <div className={s.uno}>
               <h1 className={s.title}>{item.title}</h1>
-              <span>#{item.types.join(' #')}</span>
-              <p>Score: {item.score}</p>
-              <p>Health score: {item.healthScore}</p>
+              <p><strong>Diet types:</strong> {item.types.join(', ')}</p>
+              {item.dishTypes && <p><strong>Dish types:</strong> {item.dishTypes.join(', ')}</p>}
+              <p><strong>Score:</strong> {item.score}</p>
+              <p><strong>Health score:</strong> {item.healthScore}</p>
             </div>
             <div className={s.dos}>
               <img src={item.img} alt={item.title} className={s.img}/>
-              <p>Summary:<br/><span dangerouslySetInnerHTML={createMarkup(item.summary)}></span></p>
+              <p><strong>Summary:</strong><br/><span dangerouslySetInnerHTML={createMarkup(item.summary)}></span></p>
               <br />
             </div>
             <div className={s.tres}>
@@ -29,8 +30,8 @@ export const CardDetail = ({ item }) => {
                   <div key={step.number}>
                     <h3>Step N° {step.number}</h3>
                     <p>{step.step}</p>
-                    <p>Ingredients required: {step.ingredients.map(i => i.name).join(', ')}</p>
-                    <p>Equipment required: {step.equipment.map(e => e.name).join(', ')}</p>
+                    <p><strong>Ingredients required:</strong> {step.ingredients.map(i => i.name).join(', ')}</p>
+                    <p><strong>Equipment required:</strong> {step.equipment.map(e => e.name).join(', ')}</p>
                   </div>
                 );
               })

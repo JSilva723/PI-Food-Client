@@ -1,0 +1,13 @@
+.container{
+  background-color: lightgrey;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.txt{
+  color: red; 
+  margin: 0;
+}

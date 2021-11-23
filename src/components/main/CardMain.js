@@ -5,7 +5,7 @@ import s from './cardMain.module.css';
 
 export const CardMain = ({img, title, types, id}) => {
   
-  const filter_By = useSelector((state) => state.filterBy);
+  const filter_By = useSelector(state => state.filterBy);
   const history = useHistory();
   const dispatch = useDispatch();
 

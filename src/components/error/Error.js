@@ -1,19 +1,9 @@
-import { useSelector } from "react-redux";
-
-export const Error = () => {
-  
-  const error = useSelector((state) => state.error);
+import s from './error.module.css';
+export const Error = ({error}) => {
   
   return(
-    <div style={{
-      backgroundColor: 'lightgrey',
-      width: '100%',
-      height: '50px',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}>
-      <p style={{color: 'red', margin: '0'}}>{error}</p>
+    <div className={s.container}>
+      <p className={s.txt}>{error}</p>
     </div>
   );
 };

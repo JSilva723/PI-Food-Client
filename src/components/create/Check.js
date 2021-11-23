@@ -1,21 +1,30 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTypes } from '../../actions';
 import s from './check.module.css';
 
-export const Check = ({ handleSelect, inputsTypes }) => {
+export const Check = ({ inputsTypes, types, type, setInputs }) => {
 
-  const dispatch = useDispatch();
-  const types = useSelector((state) => state.types);
-
-  // Check if have the types, at the mount the component
-  useEffect(() => {
-    if (types.length === 0)dispatch(getTypes());
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    // Set the check type inputs
+    const handleSelect = (e) => {
+      // Check if the value is
+      if (inputsTypes.includes(e.target.value)) {
+        // Remove the array
+        const filterTypes = inputsTypes.filter(type => type !== e.target.value);
+        // Set state - Remove type
+        setInputs(prev => ({
+          ...prev,
+          [type]: [...filterTypes]
+        }));
+      } else {
+        // Set state - Add type
+        setInputs(prev => ({
+          ...prev,
+          [type]: [...inputsTypes, e.target.value]
+        }));
+      }
+    };
 
   return (
-    <>
-      <p className={s.title}>Select at least one type of diet.</p>
+    <div className={s.container}>
+      <p className={s.title}>Select at least one type of {type.slice(0,type.length - 1)}.</p>
       <div className={s.grid}>
       {
         types && types.map(type => {
@@ -29,6 +38,6 @@ export const Check = ({ handleSelect, inputsTypes }) => {
         })
       }
       </div>
-    </>
+    </div>
   );
 };

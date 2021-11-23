@@ -1,108 +1,35 @@
 import { Service } from '../utils/service';
-import { 
-  REQUEST_FAILED, GET_TYPES, GET_ITEMS, ORDER_BY,
-  FILTER_BY, GET_ITEM_BY_ID, CLEAR_ITEM, CLEAR_ERROR, SET_ITEM 
-} from './types';
+import { REQUEST_FAILED, GET_ITEMS, ORDER_BY, FILTER_BY, GET_ITEM_BY_ID, CLEAR_ERROR } from './types';
 const api = new Service();
 
-
-export const getTypes = () => ((dispatch) =>{
-  api.getTypes()
-    .then(res => {
-      if (res.status === 200){
-        dispatch({
-          type: GET_TYPES,
-          payload: res.data
-        });
-      } else {
-        dispatch({
-          type: REQUEST_FAILED,
-          payload: res.data
-        });
-      }
-    })
-    .catch(err => dispatch({
-      type: REQUEST_FAILED,
-      payload: err.message
-    }));
-});
-
-export const getItems = (title) => ((dispatch) =>{
+export const getItems = (title) => ((dispatch) => {
   api.getItems(title)
     .then(res => {
-      if (res.status === 200){
-        dispatch({
-          type: GET_ITEMS,
-          payload: res.data
-        });
-      } else {
-        dispatch({
-          type: REQUEST_FAILED,
-          payload: res.data
-        });
-      }
+      dispatch({
+        type: res.status === 200 ? GET_ITEMS : REQUEST_FAILED,
+        payload: res.data
+      });
     })
     .catch(err => dispatch({
       type: REQUEST_FAILED,
-      payload: err.message
+      payload: err.data
     }));
 });
 
-export const orderBy = (attr) => {
-  return {
-    type: ORDER_BY,
-    payload: attr
-  };
-}; 
-
-export const filterBy = (attr) => {
-  return {
-    type: FILTER_BY,
-    payload: attr
-  };
-}; 
-
-export const clearItem = () => {
-  return {
-    type: CLEAR_ITEM,
-  };
-}; 
-
-export const setItem = (item) => {
-  return {
-    type: SET_ITEM,
-    payload: item
-  };
-};
-
-export const clearError = () => {
-  return {
-    type: CLEAR_ERROR,
-  };
-}; 
-
-export const getItemById = (id) => ((dispatch) =>{
+export const getItemById = (id) => ((dispatch) => {
   api.getItemById(id)
-    .then(res => {
-      if (res.status === 200 ){
-        dispatch({
-          type: GET_ITEM_BY_ID,
-          payload: res.data
-        });
-      } else {
-        dispatch({
-          type: REQUEST_FAILED,
-          payload: res.data
-        });
-
-      }
-    })
-    .catch(err => {
-      dispatch({
-        type: REQUEST_FAILED,
-        payload: err
-      });
-    });
+    .then(res => dispatch({
+      type: res.status === 200 ? GET_ITEM_BY_ID : REQUEST_FAILED,
+      payload: res.data
+    }))
+    .catch(err => dispatch({
+      type: REQUEST_FAILED,
+      payload: err.data
+    }));
 });
 
+export const orderBy = (order) => ({ type: ORDER_BY, payload: order });
 
+export const filterBy = (filter) => ({ type: FILTER_BY, payload: filter });
+
+export const clearError = () => ({ type: CLEAR_ERROR, });

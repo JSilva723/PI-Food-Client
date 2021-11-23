@@ -1,31 +1,32 @@
 import { CardDetail } from '../detail/CardDetail';
 import { Header } from '../header/Header';
-import { useDispatch, useSelector } from 'react-redux';
 import { Form } from './Form';
 import { Error } from '../error/Error';
-import { useEffect } from 'react';
-import { clearError, clearItem } from '../../actions';
+import { useEffect, useState } from 'react';
+import { Service } from '../../utils/service';
+import { useDispatch, useSelector } from 'react-redux';
+import { REQUEST_FAILED } from '../../actions/types';
+const api = new Service();
 
 export const Create = () => {
 
-  const error = useSelector((state) => state.error);
-  const item = useSelector((state) => state.item);
+  const error = useSelector(state => state.error);
   const dispatch = useDispatch();
+  const [item, setItem] = useState(null);
+  const [list, setList] = useState({diets: [], meals: []});
 
   useEffect(() => {
-    return () => {
-      dispatch(clearItem());
-      dispatch(clearError());
-    };
+    api.getTypes()
+      .then(response => setList(response.data))
+      .catch(err => dispatch({ type: REQUEST_FAILED, payload: err.data}));
   },[]); // eslint-disable-line
-
   return (
     <>
       <Header />
-      {error && <Error />}
+      {error && <Error error={error}/>}
       {item
         ? <CardDetail item={item} />
-        : <Form />
+        : <Form listTypes={list} setItem={setItem}/>
       }
     </>
   );

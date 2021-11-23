@@ -1,14 +1,3 @@
-// Default values for form to create a new recipe
-export const DEFAULT_VALUES = {
-  title: '',
-  summary: '',
-  score: 0,
-  healthScore: 0,
-  steps: [],
-  img: '',
-  types: []
-};
-
 export const filterItems = (array, filter) => {
   // For default return array
   if (filter.toLowerCase() === 'default') return array;

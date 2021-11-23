@@ -1,13 +1,13 @@
 import s from './nav.module.css';
 import { paginate } from '../../utils';
 
-export const Nav = ({index, setIndex, recipes}) => {
+export const Nav = ({pageSelected, setPageSelected, recipes}) => {
   
   const total = Math.ceil(recipes.length/9);
   const pages = paginate(total);
 
   const handleClick = (e) => { 
-    setIndex(parseInt(e.target.textContent));
+    setPageSelected(parseInt(e.target.textContent));
   };
   
   return (
@@ -16,7 +16,7 @@ export const Nav = ({index, setIndex, recipes}) => {
         {
           pages && pages.map(page => {
             return (
-              <li key={page} onClick={handleClick} className={ page === index ? s.active : null}>
+              <li key={page} onClick={handleClick} className={ page === pageSelected ? s.active : null}>
                 {page}
               </li>
             );

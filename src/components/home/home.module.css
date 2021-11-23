@@ -14,5 +14,8 @@
 .link{
   text-decoration: none;
   color: black;
-  font-size: 3rem;
+  font-size: 10%;
+  cursor: pointer;
+  font-size: xx-large;
 }
+

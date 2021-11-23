@@ -12,21 +12,19 @@ export const Main = () => {
   const orderBy = useSelector((state) => state.orderBy);
   const error = useSelector((state) => state.error);
   const dispatch = useDispatch();
-  const [index, setIndex] = useState(1);
+  const [pageSelected, setPageSelected] = useState(1);
 
   // Get items at mount the component
   useEffect(() => {
-    if (recipes.length === 0) dispatch(getItems());
-    return () => dispatch(clearError());
+    dispatch(getItems());
+    return dispatch(clearError());
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       <Header />
-      {error
-        ? <div style={{backgroundColor: 'lightgrey', minHeight: '90vh'}}> <Error /></div>
-        : <Cards items={recipes} filter={filterBy} order={orderBy} index={index} setIndex={setIndex} />
-      }
+      {error && <Error error={error}/>}
+      <Cards items={recipes} filter={filterBy} order={orderBy} pageSelected={pageSelected} setPageSelected={setPageSelected} />
     </>
   );
 };
