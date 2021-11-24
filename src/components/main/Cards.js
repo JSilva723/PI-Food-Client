@@ -4,18 +4,18 @@ import { Loading } from '../loading/Loading';
 import { Nav } from './Nav';
 import s from './cards.module.css';
 
-export const Cards = ({ items, filter, order, index, setIndex }) => {
+export const Cards = ({ items, filter, order, pageSelected, setPageSelected }) => {
   
   const limit = 9;
-  const start = 0 + limit*(index - 1);
-  const end = limit*index;
+  const start = 0 + limit*(pageSelected - 1);
+  const end = limit*pageSelected;
   
   const firstStep = filterItems(items, filter);
   const parseItems = sortItems(firstStep.slice(start, end), order);
 
   return (
     <>
-      {parseItems.length !== 0 && <Nav setIndex={setIndex} index={index} recipes={filter === 'default' ? items : firstStep}/>}
+      {parseItems.length !== 0 && <Nav setPageSelected={setPageSelected} pageSelected={pageSelected} recipes={filter === 'default' ? items : firstStep}/>}
       <div className={parseItems.length !== 0 ? s.container : null}>
         {
           parseItems.length !== 0
