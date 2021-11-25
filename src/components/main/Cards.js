@@ -19,7 +19,7 @@ export const Cards = ({ items, filter, order, pageSelected, setPageSelected }) =
       <div className={parseItems.length !== 0 ? s.container : null}>
         {
           parseItems.length !== 0
-          ? parseItems.map(item => <CardMain key={item.id} id={item.id} title={item.title} img={item.img} types={item.types} />)
+          ? parseItems.map(item => <CardMain key={item.id} id={item.id} title={item.title} img={item.img} diets={item.diets} />)
           : <Loading />
         }
       </div>

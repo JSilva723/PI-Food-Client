@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { filterBy } from '../../actions';
 import s from './cardMain.module.css';
 
-export const CardMain = ({img, title, types, id}) => {
+export const CardMain = ({img, title, diets, id}) => {
   
   const filter_By = useSelector(state => state.filterBy);
   const history = useHistory();
@@ -26,7 +26,7 @@ export const CardMain = ({img, title, types, id}) => {
       <div className={s.container_filter}>
       <span onClick={() => dispatch(filterBy('default'))} className={ filter_By === 'default' ? s.filterSelected : s.filter }>#all</span>
       {
-        types && types.map(type => <span key={type} onClick={handleFilter} className={filter_By === type ? s.filterSelected : s.filter}>#{type}</span>)
+        diets && diets.map(diet => <span key={diet} onClick={handleFilter} className={filter_By === diet ? s.filterSelected : s.filter}>#{diet}</span>)
       }
       </div>
     </div>
