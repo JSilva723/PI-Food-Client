@@ -2,7 +2,7 @@ export const filterItems = (array, filter) => {
   // For default return array
   if (filter.toLowerCase() === 'default') return array;
   // Filter by type of diet
-  return array.filter(item => item.types.includes(filter));
+  return array.filter(item => item.diets.includes(filter));
 };
 
 export const sortItems = function (array, order_by) {

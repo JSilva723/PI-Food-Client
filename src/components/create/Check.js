@@ -1,6 +1,6 @@
 import s from './check.module.css';
 
-export const Check = ({ inputsTypes, types, type, setInputs }) => {
+export const Check = ({ inputsTypes, types, type, setInputs, title }) => {
 
     // Set the check type inputs
     const handleSelect = (e) => {
@@ -24,7 +24,7 @@ export const Check = ({ inputsTypes, types, type, setInputs }) => {
 
   return (
     <div className={s.container}>
-      <p className={s.title}>Select at least one type of {type.slice(0,type.length - 1)}.</p>
+      <p className={s.title}>{title} {type.slice(0,type.length - 1)}.</p>
       <div className={s.grid}>
       {
         types && types.map(type => {

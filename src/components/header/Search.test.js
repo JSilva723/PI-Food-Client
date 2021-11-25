@@ -11,9 +11,7 @@ describe('<Search />', () => {
 
   beforeEach(() => {
     const initialState = {
-      types: [],
       items: [],
-      item: undefined,
       filterBy: 'default',
       orderBy: 'default',
       error: ''

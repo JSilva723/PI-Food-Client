@@ -62,8 +62,8 @@ export const Form = ({ listTypes, setItem }) => {
       <h1 className={s.title}>Create Recipe</h1>
       <form onSubmit={handleSubmit} className={s.container}>
         <Required inputs={inputs} handleChange={handleChange} error={errorInputs} />
-        <Check inputsTypes={inputs.diets} types={listTypes.diets} type={'diets'} setInputs={setInputs}/>
-        <Check inputsTypes={inputs.meals} types={listTypes.meals} type={'meals'} setInputs={setInputs}/>
+        <Check inputsTypes={inputs.diets} types={listTypes.diets} type={'diets'} setInputs={setInputs} title={'Select at least one type of'}/>
+        <Check inputsTypes={inputs.meals} types={listTypes.meals} type={'meals'} setInputs={setInputs} title={'Select a type of'}/>
         <Steps setInputs={setInputs} inputsSteps={inputs.steps} list={list} setList={setList}/>
         <Img inputs={inputs} handleChange={handleChange} />
        {

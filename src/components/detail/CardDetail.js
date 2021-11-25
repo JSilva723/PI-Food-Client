@@ -12,7 +12,7 @@ export const CardDetail = ({ item }) => {
         : <div className={s.container}>
             <div className={s.uno}>
               <h1 className={s.title}>{item.title}</h1>
-              <p><strong>Diet types:</strong> {item.types.join(', ')}</p>
+              <p><strong>Diet types:</strong> {item.diets.join(', ')}</p>
               {item.dishTypes && <p><strong>Dish types:</strong> {item.dishTypes.join(', ')}</p>}
               <p><strong>Score:</strong> {item.score}</p>
               <p><strong>Health score:</strong> {item.healthScore}</p>
