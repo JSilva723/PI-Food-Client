@@ -32,7 +32,7 @@ export const Main = () => {
 
   return (
     <>
-      <Header setRecipes={setRecipes}/>
+      <Header setRecipes={setRecipes} setPageSelected={setPageSelected}/>
       {error && <Error error={error}/>}
       <Cards items={recipes} filter={filter} order={order} pageSelected={pageSelected} setPageSelected={setPageSelected} />
     </>

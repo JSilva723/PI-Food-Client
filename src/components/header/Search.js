@@ -7,7 +7,7 @@ import s from './search.module.css';
 
 const api = new Service();
 
-export const Search = ({setRecipes}) => {
+export const Search = ({setRecipes, setPageSelected}) => {
 
   const [input, setInput] = useState('');
   const discpatch = useDispatch();
@@ -19,6 +19,7 @@ export const Search = ({setRecipes}) => {
       api.getItems(input)
         .then(response => {
           setRecipes(response.data);
+          setPageSelected(1);
           setInput('');
           setShow(false);
           discpatch(clearError());
@@ -32,6 +33,7 @@ export const Search = ({setRecipes}) => {
       .then(response => {
         setShow(true);
         setRecipes(response.data);
+        setPageSelected(1);
         discpatch(clearError());
       })
       .catch(err => discpatch({type: REQUEST_FAILED, payload: err.data}));
