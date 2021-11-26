@@ -1,7 +1,7 @@
 import { Cards } from './Cards';
 import { Header } from '../header/Header';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearError, getItems, orderBy, filterBy } from '../../actions';
+import { clearError, orderBy, filterBy } from '../../actions';
 import { useEffect, useState } from 'react';
 import { Error } from '../error/Error';
 import { Service } from '../../utils/service';

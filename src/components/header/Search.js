@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { clearError, getItems } from '../../actions';
+import { clearError } from '../../actions';
 import { REQUEST_FAILED } from '../../actions/types';
 import { Service } from '../../utils/service';
 import s from './search.module.css';
