@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { clearError, getItems } from '../../actions';
+import { REQUEST_FAILED } from '../../actions/types';
+import { Service } from '../../utils/service';
 import s from './search.module.css';
 
-export const Search = () => {
+const api = new Service();
+
+export const Search = ({setRecipes}) => {
 
   const [input, setInput] = useState('');
   const discpatch = useDispatch();
@@ -12,17 +16,25 @@ export const Search = () => {
 
   const handleSearch = () => {
     if (input !== '') {
-      discpatch(getItems(input));
-      setInput('');
-      setShow(false);
-      discpatch(clearError());
+      api.getItems(input)
+        .then(response => {
+          setRecipes(response.data);
+          setInput('');
+          setShow(false);
+          discpatch(clearError());
+        })
+        .catch(err => discpatch({ type: REQUEST_FAILED, payload: err.data}));
     }
   };
 
   const handleTrash = () => {
-    setShow(true);
-    discpatch(getItems(''));
-    discpatch(clearError());
+    api.getItems()
+      .then(response => {
+        setShow(true);
+        setRecipes(response.data);
+        discpatch(clearError());
+      })
+      .catch(err => discpatch({type: REQUEST_FAILED, payload: err.data}));
   };
 
   const handleChange = (e) => setInput(e.target.value);
