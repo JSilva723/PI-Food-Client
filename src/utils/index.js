@@ -6,6 +6,8 @@ export const filterItems = (array, filter) => {
 };
 
 export const sortItems = function (array, order_by) {
+  // For default return array
+  if (order_by.toLowerCase() === 'default') return array;
   // First we separate the direction and the attribute
   const [direction, by] = order_by.split('_');
   let swaped = true;

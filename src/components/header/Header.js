@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import s from './header.module.css';
 
 
-export const Header = ({setRecipes, setPageSelected}) => {
+export const Header = ({setRecipes, setPageSelected, setOrder}) => {
 
   const { location } = useHistory();
 
@@ -16,7 +16,7 @@ export const Header = ({setRecipes, setPageSelected}) => {
               <Search setRecipes={setRecipes} setPageSelected={setPageSelected}/>
               <Link to="/create" className={s.link}>Create Recipe</Link>
             <div>
-              <Order />
+              <Order setOrder={setOrder}/>
             </div>
           </div>
         : <Link to="/main" className={s.link}>Main</Link>

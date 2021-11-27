@@ -1,20 +1,12 @@
-import { useDispatch } from "react-redux";
-import { orderBy, getItems } from "../../actions";
+
 import s from './order.module.css';
 
-export const Order = () => {
+
+export const Order = ({setOrder}) => {
   
-  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    if (e.target.value === 'default') {
-      // Set the state
-      dispatch(orderBy((e.target.value)));
-      // Get items
-      dispatch(getItems());
-    } else {
-      dispatch(orderBy((e.target.value)));
-    }
+    setOrder(e.target.value);
   };
   
   return (

@@ -1,40 +1,39 @@
 import { Cards } from './Cards';
 import { Header } from '../header/Header';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearError, orderBy, filterBy } from '../../actions';
 import { useEffect, useState } from 'react';
 import { Error } from '../error/Error';
-import { Service } from '../../utils/service';
-import { REQUEST_FAILED } from '../../actions/types';
 
+import { Service } from '../../utils/service';
 const api = new Service();
 
 export const Main = () => {
 
-  const filter = useSelector(state => state.filterBy);
-  const order = useSelector(state => state.orderBy);
-  const error = useSelector(state => state.error);
-  const dispatch = useDispatch();
+  const [filter, setFilter] = useState('default');
+  const [order, setOrder] = useState('default');
+  const [error, setError] = useState(null);
   const [recipes, setRecipes] = useState([]);
   const [pageSelected, setPageSelected] = useState(1);
 
   // Get items at mount the component
   useEffect(() => {
-    api.getItems()
-      .then(response => setRecipes(response.data))
-      .catch(err => dispatch({type: REQUEST_FAILED, payload: err.data}));
+    api.getItems('all')
+      .then(response => {
+        if (response.status === 200) setRecipes(response.data);
+        else setError(response.data);
+      })
+      .catch(err => setError(err.data));
     return () => {
-      dispatch(clearError());
-      dispatch(orderBy('default'));
-      dispatch(filterBy('default'));
+      setError(null);
+      setFilter('default');
+      setOrder('default');
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-      <Header setRecipes={setRecipes} setPageSelected={setPageSelected}/>
+      <Header setRecipes={setRecipes} setPageSelected={setPageSelected} setFilter={setFilter} setOrder={setOrder}/>
       {error && <Error error={error}/>}
-      <Cards items={recipes} filter={filter} order={order} pageSelected={pageSelected} setPageSelected={setPageSelected} />
+      <Cards items={recipes} filter={filter} setFilter={setFilter} order={order} pageSelected={pageSelected} setPageSelected={setPageSelected} />
     </>
   );
 };
