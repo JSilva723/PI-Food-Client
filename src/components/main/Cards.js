@@ -13,8 +13,6 @@ export const Cards = ({ items, filter, setFilter, order, pageSelected, setPageSe
   const firstStep = filterItems(items, filter);
   const parseItems = sortItems(firstStep.slice(start, end), order);
 
-  console.log(parseItems);
-
   return (
     <>
       {parseItems.length !== 0 && <Nav setPageSelected={setPageSelected} pageSelected={pageSelected} recipes={filter === 'default' ? items : firstStep}/>}

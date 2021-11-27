@@ -1,12 +1,9 @@
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { filterBy } from '../../actions';
 import s from './cardMain.module.css';
 
 export const CardMain = ({img, title, diets, id, setFilter, filter}) => {
   
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const handleClick = () => {
     history.push(`/detail/${id}`);
