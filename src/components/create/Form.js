@@ -6,9 +6,6 @@ import { validate } from '../../utils/validations';
 import { Service } from '../../utils/service';
 import { Img } from './Img';
 import { Required } from './Required';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearError } from '../../actions';
-import { REQUEST_FAILED } from '../../actions/types';
 
 const api = new Service();
 const DEFAULT_VALUES = {
@@ -22,12 +19,10 @@ const DEFAULT_VALUES = {
   img: ''
 };
 
-export const Form = ({ listTypes, setItem }) => {
+export const Form = ({ listTypes, setItem, error, setError }) => {
 
   const [inputs, setInputs] = useState(DEFAULT_VALUES);
   const [errorInputs, setErrorInputs] = useState({});
-  const dispatch = useDispatch();
-  const error = useSelector(state => state.error);
   // State for list to ingredients and equipmen in steps component
   const [list, setList] = useState({ ingredients: [], equipment: [] });
 
@@ -46,13 +41,13 @@ export const Form = ({ listTypes, setItem }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (error) dispatch(clearError()); // Clear prev error
+    if (error) setError(null); // Clear prev error
     api.insert(inputs)
       .then(response => {
         if (response.status === 200) {
           setItem(response.data);
         } else {
-          dispatch({ type: REQUEST_FAILED, payload: response.data});
+          setError(response.data);
         }
       })
       .catch(err => console.log(err)); // eslint-disable-line

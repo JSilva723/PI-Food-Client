@@ -31,7 +31,7 @@ export const Main = () => {
 
   return (
     <>
-      <Header setRecipes={setRecipes} setPageSelected={setPageSelected} setFilter={setFilter} setOrder={setOrder}/>
+      <Header setRecipes={setRecipes} setPageSelected={setPageSelected} setFilter={setFilter} setOrder={setOrder} setError={setError}/>
       {error && <Error error={error}/>}
       <Cards items={recipes} filter={filter} setFilter={setFilter} order={order} pageSelected={pageSelected} setPageSelected={setPageSelected} />
     </>

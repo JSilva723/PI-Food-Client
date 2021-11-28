@@ -23,7 +23,7 @@ export const Create = () => {
       {error && <Error error={error}/>}
       {item
         ? <CardDetail item={item} />
-        : <Form listTypes={list} setItem={setItem}/>
+        : <Form listTypes={list} setItem={setItem} error={error} setError={setError}/>
       }
     </>
   );

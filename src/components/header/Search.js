@@ -1,16 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { clearError } from '../../actions';
-import { REQUEST_FAILED } from '../../actions/types';
 import { Service } from '../../utils/service';
 import s from './search.module.css';
 
 const api = new Service();
 
-export const Search = ({setRecipes, setPageSelected}) => {
+export const Search = ({setRecipes, setPageSelected, setError }) => {
 
   const [input, setInput] = useState('');
-  const discpatch = useDispatch();
   const [show, setShow] = useState(true);
 
 
@@ -22,9 +18,9 @@ export const Search = ({setRecipes, setPageSelected}) => {
           setPageSelected(1);
           setInput('');
           setShow(false);
-          discpatch(clearError());
+          setError(null);
         })
-        .catch(err => discpatch({ type: REQUEST_FAILED, payload: err.data}));
+        .catch(err => setError(err.data));
     }
   };
 
@@ -34,9 +30,9 @@ export const Search = ({setRecipes, setPageSelected}) => {
         setShow(true);
         setRecipes(response.data);
         setPageSelected(1);
-        discpatch(clearError());
+        setError(null);
       })
-      .catch(err => discpatch({type: REQUEST_FAILED, payload: err.data}));
+      .catch(err => setError(err.data));
   };
 
   const handleChange = (e) => setInput(e.target.value);

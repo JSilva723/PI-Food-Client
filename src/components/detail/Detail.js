@@ -2,27 +2,27 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Header } from '../header/Header';
 import { CardDetail } from './CardDetail';
+import { Error } from '../error/Error';
 import { Service } from '../../utils/service';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { REQUEST_FAILED } from '../../actions/types';
 const api = new Service();
 
 export const Detail = () => {
 
   const { id } = useParams();
   const [item, setItem] = useState();
-  const dispatch = useDispatch();
+  const [error, setError] = useState(null);
   // Get item by id at mount the component
   useEffect(() => {
     api.getItemById(id)
       .then(response => setItem(response.data))
-      .catch(err => dispatch({type: REQUEST_FAILED, payload: err.data}));
+      .catch(err => setError(err.data));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       <Header />
+      {error && <Error error={error}/>}
       <CardDetail item={item}/>
     </>
   );
